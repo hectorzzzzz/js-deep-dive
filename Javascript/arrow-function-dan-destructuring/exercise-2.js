@@ -1,5 +1,5 @@
 // =========================================================================
-// 1. Membuat function biasa (Sedang/Moderate)
+// 1. Membuat function biasa + destructuring (Sedang/Moderate)
 // =========================================================================
 console.log ("===Jawaban Function===")
 
@@ -158,7 +158,7 @@ function evaluasiKaryawan(karyawan) {
 console.log(evaluasiKaryawan(devPerformance));
 
 // =========================================================================
-// 2. Membuat Arrow Function dari soal sebelumnya
+// 2. Membuat Arrow Function + destructuring dari soal sebelumnya
 // =========================================================================
 console.log ("\n===Jawaban Arrow Function===");
 
