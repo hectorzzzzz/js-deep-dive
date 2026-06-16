@@ -41,8 +41,28 @@ async function getMenuData() {
 // Cara eksekusi (karena async, harus pakai .then atau di dalam async lain)
 getMenuData().then(res => console.log(res)); // Ekspektasi: "Menu: Matcha Latte, Harga: 25000"
 
+// 1. Ambil 'periode' dari report.
+// 2. Hitung untungBersih (omsetKotor dikurangi biayaOperasional).
+// 3. Kembalikan OBJEK BARU dengan struktur: { bulan: periode, grafikData: [omsetKotor, untungBersih] }
+const reportMentah = {
+    id_laporan: "REP-2026",
+    periode: "Juni",
+    finance: {
+        omsetKotor: 15000000,
+        biayaOperasional: 5000000
+    }
+};
 
+function transformReport(report) {
+    const rep = report
+    const untungBersih = rep.finance.omsetKotor - rep.finance.biayaOperasional
+    return {
+        bulan: rep.periode, grafikData: [rep.finance.omsetKotor, untungBersih]
+    }
+}
 
+console.log(transformReport(reportMentah));
+// Ekspektasi: { bulan: 'Juni', grafikData: [ 15000000, 10000000 ] }
 
 
 
@@ -50,3 +70,22 @@ const createRoleCheckerArrow = allowedRole => userRole => userRole === allowedRo
 const isAdminArrow = createRoleCheckerArrow("admin");
 console.log(isAdminArrow("admin"));
 console.log(isAdminArrow("customer"));
+
+const getMenuDataArrow = async () => {
+    try {
+        const response = await fakeFetchMenu();
+        const res = response.data
+        return `Menu : ${res.name}, Harga : ${res.price}`
+    } catch (error) {
+        return "Gagal mengambil data";
+    }
+}
+
+getMenuDataArrow().then(res => console.log(res));
+
+const transformReportArrow = ({ periode, finance: { omsetKotor, biayaOperasional } }) =>
+    ({bulan: periode, grafikData: [omsetKotor, omsetKotor - biayaOperasional]})
+
+console.log(transformReportArrow(reportMentah));
+
+
