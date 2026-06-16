@@ -70,8 +70,8 @@ console.log(potongTeks("Matcha Choco"));
 function hitungTotalBayar(hargaAsli, diskon = 0) {
     return (hargaAsli - diskon)*1.11;
 }
-console.log(hitungTotalBayar(20000, 5000)); // Ekspektasi: (20000 - 5000) * 1.11 = 16650
-console.log(hitungTotalBayar(30000)); // Ekspektasi: diskon otomatis 0 -> 30000 * 1.11 = 33300
+console.log(hitungTotalBayar(20000, 5000));
+console.log(hitungTotalBayar(30000));
 
 // Hitung sisa stok (stokAwal dikurangi terkeluar).
 // Kembalikan sebuah ARRAY BARU berisi: [namaBarang, sisaStok]
@@ -84,7 +84,7 @@ function cekSisaStok(gudang) {
     ]
 }
 const dataGudangTerbaru = cekSisaStok(dataGudang)
-console.log("Data terbaru :", dataGudangTerbaru); // Ekspektasi: [ 'Motobatt MTZ5S', 40 ]
+console.log("Data terbaru :", dataGudangTerbaru);
 
 // Ambil namaJalan, kota, dan provinsi dari objek lokasi.
 // Kembalikan satu baris teks string (Gunakan backtick): "namaJalan, kota, provinsi"
@@ -100,8 +100,62 @@ const responseLokasi = {
 function formatAlamat(lokasi) {
     return `${lokasi.namaJalan}, ${lokasi.wilayah.kota}, ${lokasi.wilayah.provinsi}`
 }
-console.log(formatAlamat(responseLokasi)); 
-// Ekspektasi: "Jl. Kebon Jeruk No. 45, Jakarta Barat, DKI Jakarta"
+console.log(formatAlamat(responseLokasi));
+
+// 1. Ambil 'periode' dari report.
+// 2. Hitung untungBersih (omsetKotor dikurangi biayaOperasional).
+// 3. Kembalikan OBJEK BARU dengan struktur: { bulan: periode, grafikData: [omsetKotor, untungBersih] }
+const reportMentah = {
+    id_laporan: "REP-2026",
+    periode: "Juni",
+    finance: {
+        omsetKotor: 15000000,
+        biayaOperasional: 5000000
+    }
+};
+
+function transformReport(report) {
+    const rep = report
+    const untungBersih = rep.finance.omsetKotor - rep.finance.biayaOperasional
+    return {
+        bulan: rep.periode, grafikData: [rep.finance.omsetKotor, untungBersih]
+    }
+}
+
+console.log(transformReport(reportMentah));
+
+// Ambil brand, ramSize, dan model GPU.
+// Kembalikan sebuah ARRAY baru dengan format: [brand, ramSize, model]
+const dataLaptop = {
+    brand: "ASUS ROG",
+    specs: {
+        memory: { ramSize: "16GB", type: "DDR5" },
+        gpu: { model: "RTX 4060", vram: "8GB" }
+    }
+};
+
+function ringkasSpek(laptop) {
+    const data = laptop
+    return [data.brand, data.specs.memory.ramSize, data.specs.gpu.model]
+}
+
+console.log(ringkasSpek(dataLaptop));
+
+// 1. Jika nilaiCoding DAN disiplin kedua-duanya di atas atau sama dengan 80, maka statusnya "LULUS".
+// 2. Jika ada salah satu saja yang di bawah 80, statusnya "GAGAL".
+// 3. Kembalikan OBJEK BARU format: { namaKaryawan: ..., status: ... }
+const devPerformance = {
+    id: "DEV-01",
+    nama: "Hector",
+    metrics: { nilaiCoding: 85, disiplin: 90 }
+};
+
+function evaluasiKaryawan(karyawan) {
+    const eval = karyawan.metrics.nilaiCoding >= 80 && karyawan.metrics.disiplin >= 80 ? "LULUS" : "GAGAL"
+    return {namaKaryawan: karyawan.nama, status: eval}
+}
+
+console.log(evaluasiKaryawan(devPerformance));
 
 // =========================================================================
 // 2. Membuat Arrow Function dari soal sebelumnya
@@ -142,3 +196,11 @@ console.log("Data terbaru :", cekSisaStokArrow(dataGudang));
 
 const formatAlamatArrow = ({namaJalan, wilayah: {kota, provinsi}}) => `${namaJalan}, ${kota}, ${provinsi}`
 console.log(formatAlamatArrow(responseLokasi));
+
+const transformReportArrow = ({ periode, finance: { omsetKotor, biayaOperasional } }) =>
+    ({bulan: periode, grafikData: [omsetKotor, omsetKotor - biayaOperasional]})
+
+console.log(transformReportArrow(reportMentah));
+
+const ringkasSpekArrow = ({brand, specs: {memory: {ramSize}, gpu: {model}}}) => [brand, ramSize, model]
+console.log(ringkasSpekArrow(dataLaptop));
