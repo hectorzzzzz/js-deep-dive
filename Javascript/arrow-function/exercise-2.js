@@ -25,7 +25,7 @@ console.log(formatSubscriber(450));
 // Ambil avatarUrl dan username dari parameter profile.
 // Jika avatarUrl bernilai null/falsy, kembalikan string "default-avatar.png"
 // Jika ada, kembalikan avatarUrl aslinya.
-const userSatu = { username: "winny_dev", avatarUrl: "https://photos.com/winny.jpg" };
+const userSatu = { username: "hector_dev", avatarUrl: "https://photos.com/winny.jpg" };
 const userDua = { username: "anonim_coder", avatarUrl: null }; // Ceritanya belum upload
 
 function getAvatar(profile) {
@@ -37,7 +37,7 @@ console.log(getAvatar(userDua));
 
 
 const responseAPI = {
-    item: "Eclaire Matcha Premium",
+    item: "Chatime Matcha Premium",
     detail: {
         hargaBaru: 28000,
         diskonPersen: 10
@@ -61,7 +61,7 @@ console.log(ringkasData(responseAPI));
 function potongTeks(teks) {
     return teks.length > 15 ? `${teks.slice(0, 15)}...` : teks
 }
-console.log(potongTeks("Eclaire Matcha Premium Rasa Baru"));
+console.log(potongTeks("Chatime Matcha Premium Rasa Baru"));
 console.log(potongTeks("Matcha Choco"));
 
 // Hitung harga setelah dikurangi diskon.
@@ -130,7 +130,7 @@ const ringkasDataArrow = ({item, detail: {hargaBaru, diskonPersen}}) => ({
 console.log(ringkasDataArrow(responseAPI));
 
 const potongTeksArrow = (teks) => teks.length > 15 ? `${teks.slice(0, 15)}...` : teks
-console.log(potongTeksArrow("Eclaire Matcha Premium Rasa Baru"));
+console.log(potongTeksArrow("Chatime Matcha Premium Rasa Baru"));
 console.log(potongTeksArrow("Matcha Choco"));
 
 const hitungTotalBayarArrow = (hargaAsli, diskon = 0) => (hargaAsli - diskon)*1.11;

@@ -15,7 +15,7 @@ function isPasswordValid(password) {
     return password.length >= 8
 }
 
-console.log(isPasswordValid("eclaire123"));
+console.log(isPasswordValid("chatime123"));
 
 // Gabungkan kedua string kelas dengan spasi di tengahnya
 function gabungClass (classDasar, classTambahan) {
@@ -81,7 +81,7 @@ const formatRupiahArrow = (angka) => "Rp " + angka
 console.log(formatRupiahArrow(25000));
 
 const isPasswordValidArrow = (password) => password.length >= 8
-console.log(isPasswordValidArrow("eclaire123"));
+console.log(isPasswordValidArrow("Chatime123"));
 
 const gabungClassArrow = (classDasar, classTambahan) => classDasar + " " + classTambahan
 console.log(gabungClassArrow("rounded-lg", "bg-matcha"));
